@@ -3,18 +3,21 @@ import banner from "../../../../Images/Banner.jpg";
 
 const Banner = () => {
   return (
-    <div className="hero min-h-screen bg-base-100">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <img
-          src={banner}
-          className="max-w-sm rounded-lg shadow-2xl"
-        />
-        <div>
-          <h1 className="text-5xl font-bold">HOMIE'S THE 
-          NAME OF LARGEST MENUFACTURER</h1>
-          <p className="py-6">
-          We are the Homie's. Where you get your best production supply's,
-          Deliveries and many more.
+    <div
+      className="hero min-h-screen rounded-lg"
+      style={{
+        background: `url(${banner})`,
+      }}
+    >
+      <div className="hero-overlay bg-opacity-60"></div>
+      <div className="hero-content text-center text-neutral-content">
+        <div className="max-w-md">
+          <h1 className="mb-5 text-5xl font-bold">
+            HOMIE'S IS THE NAME OF BELIEVE
+          </h1>
+          <p className="mb-5 ">
+            We are the Homie's. Where you get your best production supply's,
+            Deliveries and many more.
           </p>
         </div>
       </div>

@@ -7,11 +7,11 @@ const Summary = () => {
   return (
     <div className="my-28 text-center">
       <div>
-        <h1 className="text-5xl mb-10 font-bold text-orange-500">
+        <h1 className="text-4xl mb-10 font-bold text-orange-500">
           Homie's At a Glance
         </h1>
       </div>
-      <div className="stats stats-vertical lg:stats-horizontal shadow text-3xl flex items-stretch bg-yellow-200">
+      <div className="stats stats-vertical lg:stats-horizontal shadow text-3xl bg-yellow-200 px-10">
         <div className="stat">
         <div>
             <FontAwesomeIcon icon={faArrowAltCircleUp}></FontAwesomeIcon>
