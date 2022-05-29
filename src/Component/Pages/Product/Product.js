@@ -15,7 +15,7 @@ const Product = ({product}) => {
         <h4 className="text-xl text-bold">Price: {product.price}</h4>
         <b>Stock: {product.Stock}</b>
         <b>Minimum Order: {product.Minimum_Order}</b>
-        <p>{product.details}</p>
+        <p>{product.about}</p>
         <div className="card-actions">
           <button className="btn btn-primary">Buy Now</button>
         </div>
