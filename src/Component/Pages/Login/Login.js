@@ -3,7 +3,7 @@ import auth from "../../../firebase.init";
 import { useSignInWithGoogle,useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import Loading from "../Shared/Loading";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [signInWithGoogle, userGoogle, Gloading, Gerror] = useSignInWithGoogle(auth);
@@ -21,9 +21,11 @@ const Login = () => {
   } = useForm();
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  let from = location.state?.from?.pathname || "/"
 
   const onSubmit = (data) => {
-    console.log(data);
     signInWithEmailAndPassword(data.email, data.password)
   };
 
@@ -34,12 +36,11 @@ const Login = () => {
   }
 
   if(error || Gerror){
-      errorMassage = <p class="text-red-500">{error?.massage || Gerror?.message}</p>
+      errorMassage = <p className="text-red-500">{error?.massage || Gerror?.message}</p>
   }
 
   if (user || userGoogle) {
-    navigate('/')
-    console.log(user || userGoogle);
+    navigate(from, {replace: true})
   }
 
   return (
@@ -65,7 +66,7 @@ const Login = () => {
                     },
                     pattern: {
                       value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
-                      message: "Provide a True Email",
+                      message: "Provide a valid Email",
                     },
                   })}
                 />

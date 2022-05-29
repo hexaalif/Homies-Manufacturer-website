@@ -10,6 +10,8 @@ import Blog from './Component/Pages/Blog/Blog';
 import NotFound from './Component/Pages/Shared/NotFound/NotFound';
 import Footer from './Component/Pages/Shared/Footer';
 import SignUp from './Component/Pages/Login/SignUp';
+import ProductDetail from './Component/Pages/ProductDetail/ProductDetail';
+import RequireAuth from './Component/Pages/Login/RequireAuth';
 
 function App() {
   return (
@@ -23,6 +25,11 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/purchase" element={
+        <RequireAuth>
+          <ProductDetail />
+        </RequireAuth>
+      } />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer></Footer>

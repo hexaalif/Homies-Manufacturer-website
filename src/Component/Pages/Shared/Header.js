@@ -35,7 +35,7 @@ const Header = () => {
       </li>
       <li>
         {user ? (
-          <button onClick={logOut} class="btn btn-ghost font-bold">Sign Out</button>
+          <button onClick={logOut} className="btn btn-ghost font-bold">Sign Out</button>
         ) : (
           <Link to="/login" className="font-bold">
             Login

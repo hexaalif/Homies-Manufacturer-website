@@ -40,7 +40,7 @@ const SignUp = () => {
 
   if (error || Gerror) {
     errorMassage = (
-      <p class="text-red-500">{error?.massage || Gerror?.message}</p>
+      <p className="text-red-500">{error?.massage || Gerror?.message}</p>
     );
   }
 
