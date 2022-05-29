@@ -1,21 +1,45 @@
 import React from "react";
 import auth from "../../../firebase.init";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { useSignInWithGoogle,useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import Loading from "../Shared/Loading";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, userGoogle, Gloading, Gerror] = useSignInWithGoogle(auth);
+  const [
+    signInWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useSignInWithEmailAndPassword(auth);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
     console.log(data);
+    signInWithEmailAndPassword(data.email, data.password)
   };
-  if (user) {
-    console.log(user);
+
+  let errorMassage;
+
+  if(loading || Gloading){
+    return <Loading></Loading>
+  }
+
+  if(error || Gerror){
+      errorMassage = <p class="text-red-500">{error?.massage || Gerror?.message}</p>
+  }
+
+  if (user || userGoogle) {
+    navigate('/')
+    console.log(user || userGoogle);
   }
 
   return (
@@ -77,8 +101,10 @@ const Login = () => {
                 </label>
               </div>
 
+              {errorMassage}    
               <input className="btn w-full max-w-xs text-white" type="submit" value="Login"/>
             </form>
+            <p><small>Not have an Account? <Link className="text-primary" to="/signup">Create Account</Link></small></p>
 
             <div className="divider">OR</div>
 
