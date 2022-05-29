@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Product from '../../Product/Product';
-import Products from '../../Products/Products';
-import Footer from '../../Shared/Footer';
 import Banner from '../Banner/Banner';
 import CEO from '../CEO/CEO';
 import Info from '../Info/Info';
@@ -60,7 +58,6 @@ const Home = () => {
             <Summary></Summary>
             <CEO></CEO>
             <Testimonial></Testimonial>
-            <Footer></Footer>
         </div>
     );
 };

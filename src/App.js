@@ -8,6 +8,7 @@ import Products from './Component/Pages/Products/Products';
 import Portfolio from './Component/Pages/Portfolio/Portfolio';
 import Blog from './Component/Pages/Blog/Blog';
 import NotFound from './Component/Pages/Shared/NotFound/NotFound';
+import Footer from './Component/Pages/Shared/Footer';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }

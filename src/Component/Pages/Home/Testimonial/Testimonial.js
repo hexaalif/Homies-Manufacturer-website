@@ -17,7 +17,7 @@ const Testimonial = () => {
     return (
         <section>
             <h1 className='text-5xl text-primary font-bold text-center my-28'>Reviews</h1>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 g   ap-4 mb-28'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-28'>
                 {
                     reviews.map(review => <Review
                     key={review._id}
