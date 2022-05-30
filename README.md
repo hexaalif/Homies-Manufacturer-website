@@ -1,3 +1,19 @@
+# HOMIE'S
+
+---
+live link: https://homies-2234f.web.app/
+---
+
+---
+This website features & functionality:
+- Login system with authorization
+- Forms with react-hook-forms
+- Dashboard section
+- Protected route for product detail
+- Portfolio sites
+---
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
