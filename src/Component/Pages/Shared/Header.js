@@ -23,6 +23,15 @@ const Header = () => {
           Products
         </Link>
       </li>
+
+      {
+          user && <li>
+          <Link to="/dashboard" className="font-bold">
+            Dashboard
+          </Link>
+        </li>
+      }
+      
       <li>
         <Link to="/portfolio" className="font-bold">
           Portfolio
@@ -33,6 +42,7 @@ const Header = () => {
           Blog
         </Link>
       </li>
+
       <li>
         {user ? (
           <button onClick={logOut} className="btn btn-ghost font-bold">Sign Out</button>

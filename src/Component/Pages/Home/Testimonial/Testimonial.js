@@ -12,7 +12,7 @@ const Testimonial = () => {
         },
         {
             _id: 3, name: 'Kristin Ruiz', reviews: 'Homies is the best. Their products always give pleasures', img: user
-        },
+        }
     ]
     return (
         <section>
