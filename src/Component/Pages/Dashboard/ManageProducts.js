@@ -42,7 +42,7 @@ const ManageProducts = () => {
                                     {
                                         <label
                                             onClick={() => setModalClose('open')}
-                                            htmlFor="delete-modal2"
+                                            for="delete-modal2"
                                             className="btn btn-xs bg-red-500">Delete</label>
                                     }
                                 </td>

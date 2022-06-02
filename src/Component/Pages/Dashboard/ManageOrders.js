@@ -50,7 +50,7 @@ const ManageOrders = () => {
                                                 <p>Transaction id: <span className='text-success'>{transactionId}</span></p>
                                             </div> : <label
                                                 onClick={() => setModalClose('open')}
-                                                htmlFor="deleverd-modal"
+                                                for="deleverd-modal"
                                                 className='btn btn-xs bg-green-500'>Dleverd</label>
                                         }
                                     </div>}
@@ -60,7 +60,7 @@ const ManageOrders = () => {
                                         !paid &&
                                         <label
                                             onClick={() => setModalClose('open')}
-                                            htmlFor="delete-modal1"
+                                            for="delete-modal1"
                                             className="btn btn-xs bg-red-500">Cancel</label>
                                     }
                                 </td>

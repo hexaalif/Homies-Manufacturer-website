@@ -4,7 +4,6 @@ const Review = ({ review }) => {
   return (
     <div className="card lg:max-w-lg p-10 bg-base-100 shadow-xl text-justify">
       <div className="card-body">
-        <p>{review.reviews}</p>
         <div>
           <div className="avatar">
             <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 my-5">
@@ -12,7 +11,8 @@ const Review = ({ review }) => {
             </div>
           </div>
           <div>
-              <h4 className="text-xl">{review.name}</h4>
+            <h4 className="text-xl">{review.name}</h4>
+            <p>{review.description}</p>
           </div>
         </div>
       </div>

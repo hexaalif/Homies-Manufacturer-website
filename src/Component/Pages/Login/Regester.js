@@ -1,54 +1,61 @@
-import React, { useEffect } from "react";
-import {
-  useSignInWithEmailAndPassword,
-  useSignInWithGoogle,
-} from "react-firebase-hooks/auth";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import auth from "../../../firebase.init";
 import useToken from "../../../Hooks/useToken";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithGoogle,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import Loading from "../Shared/Loading";
+import auth from "../../../firebase.init";
+import { toast } from "react-toastify";
 
-const Login = () => {
+const Regester = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
   const [token] = useToken(user || gUser);
 
-  let signInError;
   const navigate = useNavigate();
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
 
-  useEffect(() => {
-    if (token) {
-      navigate(from, { replace: true });
-      toast.success("Login Success.");
-    }
-  }, [token, from, navigate]);
+  let signInError;
 
-  if (loading || gLoading) {
+  if (loading || gLoading || updating) {
     return <Loading></Loading>;
   }
 
-  if (error || gError) {
+  if (error || gError || updateError) {
     signInError = (
       <p className="text-red-500">
-        <small>{error?.message || gError?.message}</small>
+        <small>
+          {error?.message || gError?.message || updateError?.message}
+        </small>
       </p>
     );
   }
 
-  const onSubmit = (data) => {
-    signInWithEmailAndPassword(data.email, data.password);
+  if (token) {
+    console.log(token);
+    navigate(from, { replace: true });
+    toast.success("Regester Success.");
+  }
+
+  const onSubmit = async (data) => {
+    await createUserWithEmailAndPassword(data.email, data.password);
+    await updateProfile({ displayName: data.name });
+    console.log(data);
   };
 
   return (
@@ -56,9 +63,33 @@ const Login = () => {
       <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
           <h3 className="text-2xl text-center font-bold mb-8">
-            <span className=" border-b-2 border-primary">Login</span>
+            <span className=" border-b-2 border-primary">Register</span>
           </h3>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="input input-bordered w-full max-w-xs"
+                {...register("name", {
+                  required: {
+                    value: true,
+                    message: "Name is Required",
+                  },
+                })}
+              />
+              <label className="label">
+                {errors.name?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.name.message}
+                  </span>
+                )}
+              </label>
+            </div>
+
             <div className="form-control w-full max-w-xs">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -126,16 +157,16 @@ const Login = () => {
 
             {signInError}
             <input
-              className="btn btn-primary w-full max-w-xs"
+              className="btn btn-primary w-full max-w-xs text-white"
               type="submit"
-              value="Login"
+              value="Regester"
             />
           </form>
           <p>
             <small>
-              New to Homies?{" "}
-              <Link className="text-primary" to="/signup">
-                Create New Account
+              Already have an account?{" "}
+              <Link className="text-primary" to="/login">
+                Login
               </Link>
             </small>
           </p>
@@ -152,4 +183,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Regester;
