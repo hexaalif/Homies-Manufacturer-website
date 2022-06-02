@@ -14,7 +14,7 @@ const AddReview = () => {
     const name = user?.displayName;
     const review = { ratings, description, img, name };
 
-    fetch("http://localhost:5000/review", {
+    fetch("https://desolate-everglades-49918.herokuapp.com/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",

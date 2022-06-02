@@ -26,7 +26,7 @@ const OrderModal = ({ order, setOrder }) => {
       paid: false,
     };
 
-    fetch(`http://localhost:5000/order/${id}`, {
+    fetch(`https://desolate-everglades-49918.herokuapp.com/order/${id}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
